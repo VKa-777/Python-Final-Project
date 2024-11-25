@@ -5,6 +5,7 @@ Thành viên
   - 22130087 - Phạm Tiến Hoàng
   - 22130111 - Đỗ An Khang
   - 22130090 - Hà Anh Hợp
+
 Các chức năng của đồ án:
   - Thống kê tiến độ người chơi
   - Thống kê thành tích của từng người
