@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1337</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1337</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Minute Typing Test</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="heading_background" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1337</width>
+      <height>78</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #AAC4FF
+</string>
+    </property>
+    <widget class="QPushButton" name="return_btn">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>71</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: 2px solid white;
+border-radius: 5px;
+color: white;
+font-size: 36px;
+padding-bottom: 9px; 
+font-weight: bold;
+text-align: center;</string>
+     </property>
+     <property name="text">
+      <string>←</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="restart_btn">
+     <property name="geometry">
+      <rect>
+       <x>1250</x>
+       <y>20</y>
+       <width>71</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: 2px solid white;
+border-radius: 5px;
+color: white;
+font-size: 36px;
+padding-bottom: 7px; 
+font-weight: bold;
+text-align: center;</string>
+     </property>
+     <property name="text">
+      <string>⟳</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="heading_label">
+     <property name="geometry">
+      <rect>
+       <x>514</x>
+       <y>0</y>
+       <width>321</width>
+       <height>75</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:28pt; font-weight:600; color:#ffffff;&quot;&gt;3 Minute typing test&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>1156</x>
+       <y>0</y>
+       <width>61</width>
+       <height>78</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+font: 63 24pt &quot;Bahnschrift SemiBold SemiConden&quot;;
+</string>
+     </property>
+     <property name="text">
+      <string>0:48</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="background" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>78</y>
+      <width>1337</width>
+      <height>642</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #B1B2FF;
+</string>
+    </property>
+    <widget class="QWidget" name="text_area_background" native="true">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>69</y>
+       <width>1261</width>
+       <height>481</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size: 48pt;
+background-color: #fff;
+border-radius: 5px;
+</string>
+     </property>
+     <widget class="QTextEdit" name="text_area">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>1231</width>
+        <height>461</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 48pt;</string>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:48pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#23d83e;&quot;&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo &lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#ea0c0f;&quot;&gt;li&lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#23d83e;&quot;&gt;gula &lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#ea0c0f;&quot;&gt;ege&lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#23d83e;&quot;&gt;t dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nas&lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#ea0c0f;&quot;&gt;c&lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#23d83e;&quot;&gt;etur ridiculus mus. Donec quam felis,  ultricies nec, pellentesque eu, pretium q&lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#ea0c0f;&quot;&gt;ui&lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#23d83e;&quot;&gt;s, sem. Nulla consequat massa quis enim. Donec pede justo, fring&lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#ea0c0f;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#23d83e;&quot;&gt;lla vel, aliquet nec, vulputate  eget,&lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600;&quot;&gt; &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1337</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
