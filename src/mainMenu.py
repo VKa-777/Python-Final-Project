@@ -7,9 +7,25 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-
+import min_1_typingTest, min_3_typingTest, min_5_typingTest, page_1_typingTest, page_2_typingTest, page_3_typingTest
 
 class Ui_MainWindow(object):
+    def load_content(self, sender, current_window):
+        test_map = {
+            "min_1_btn": "min_1_typingTest.Ui_MainWindow",
+            "min_3_btn": "min_3_typingTest.Ui_MainWindow",
+            "min_5_btn": "min_5_typingTest.Ui_MainWindow",
+            "page_1_btn": "page_1_typingTest.Ui_MainWindow",
+            "page_2_btn": "page_2_typingTest.Ui_MainWindow",
+            "page_3_btn": "page_3_typingTest.Ui_MainWindow"
+                }
+        if sender.objectName() in test_map:
+            self.new_window = QtWidgets.QMainWindow()
+            self.new_ui = eval(test_map[sender.objectName()])()
+            self.new_ui.setupUi(self.new_window)
+            self.new_window.show()
+            current_window.hide()
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1337, 720)
@@ -305,6 +321,8 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        self.btn_load_content()
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Speed Typing Test"))
@@ -329,6 +347,14 @@ class Ui_MainWindow(object):
         self.page_2_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">2 Page</p></body></html>"))
         self.page_3_btn.setText(_translate("MainWindow", "3 Page typing test"))
         self.page_3_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">3 Page</p></body></html>"))
+
+    def btn_load_content(self):
+        self.min_1_btn.clicked.connect(lambda: self.load_content(self.min_1_btn, MainWindow))
+        self.min_3_btn.clicked.connect(lambda: self.load_content(self.min_3_btn, MainWindow))
+        self.min_5_btn.clicked.connect(lambda: self.load_content(self.min_5_btn, MainWindow))
+        self.page_1_btn.clicked.connect(lambda: self.load_content(self.page_1_btn, MainWindow))
+        self.page_2_btn.clicked.connect(lambda: self.load_content(self.page_2_btn, MainWindow))
+        self.page_3_btn.clicked.connect(lambda: self.load_content(self.page_3_btn, MainWindow))
 
 
 if __name__ == "__main__":

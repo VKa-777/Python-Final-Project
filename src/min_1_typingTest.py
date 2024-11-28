@@ -7,9 +7,16 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-
+import mainMenu
 
 class Ui_MainWindow(object):
+    def back_to_main_menu(self, current_window):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = mainMenu.Ui_MainWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        current_window.hide()
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1337, 720)
@@ -23,6 +30,7 @@ class Ui_MainWindow(object):
         self.heading_background.setObjectName("heading_background")
         self.return_btn = QtWidgets.QPushButton(parent=self.heading_background)
         self.return_btn.setGeometry(QtCore.QRect(20, 20, 71, 41))
+        self.return_btn.clicked.connect(lambda: self.back_to_main_menu(MainWindow))
         self.return_btn.setStyleSheet("""
             QPushButton {
                 border: 2px solid white;

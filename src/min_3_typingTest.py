@@ -7,9 +7,16 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-
+import mainMenu
 
 class Ui_MainWindow(object):
+    def back_to_main_menu(self, current_window):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = mainMenu.Ui_MainWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        current_window.hide()
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1337, 720)
@@ -22,24 +29,49 @@ class Ui_MainWindow(object):
 "")
         self.heading_background.setObjectName("heading_background")
         self.return_btn = QtWidgets.QPushButton(parent=self.heading_background)
+        self.return_btn.clicked.connect(lambda: self.back_to_main_menu(MainWindow))
         self.return_btn.setGeometry(QtCore.QRect(20, 20, 71, 41))
-        self.return_btn.setStyleSheet("border: 2px solid white;\n"
-"border-radius: 5px;\n"
-"color: white;\n"
-"font-size: 36px;\n"
-"padding-bottom: 9px; \n"
-"font-weight: bold;\n"
-"text-align: center;")
+        self.return_btn.setStyleSheet("""
+                    QPushButton {
+                        border: 2px solid white;
+                        border-radius: 5px;
+                        color: white;
+                        font-size: 36px;
+                        padding-bottom: 9px;
+                        font-weight: bold;
+                        text-align: center;
+                    } QPushButton:hover {
+                        color: #eeeeee;
+                        border: 2px solid #eeeeee;
+                    }
+
+                    QPushButton:pressed {
+                        color: #ABABAB;
+                        border: 2px solid #ABABAB;
+                    }
+                """)
         self.return_btn.setObjectName("return_btn")
         self.restart_btn = QtWidgets.QPushButton(parent=self.heading_background)
         self.restart_btn.setGeometry(QtCore.QRect(1250, 20, 71, 41))
-        self.restart_btn.setStyleSheet("border: 2px solid white;\n"
-"border-radius: 5px;\n"
-"color: white;\n"
-"font-size: 36px;\n"
-"padding-bottom: 7px; \n"
-"font-weight: bold;\n"
-"text-align: center;")
+        self.restart_btn.setStyleSheet("""
+                    QPushButton {
+                        border: 2px solid white;
+                        border-radius: 5px;
+                        color: white;
+                        font-size: 36px;
+                        padding-bottom: 7px;
+                        font-weight: bold;
+                        text-align: center;
+                    } QPushButton:hover {
+                        color: #eeeeee;
+                        border: 2px solid #eeeeee;
+                    }
+
+                    QPushButton:pressed {
+                        color: #ABABAB;
+                        border: 2px solid #ABABAB;
+                    }
+                """)
         self.restart_btn.setObjectName("restart_btn")
         self.heading_label = QtWidgets.QLabel(parent=self.heading_background)
         self.heading_label.setGeometry(QtCore.QRect(514, 0, 321, 75))
