@@ -321,7 +321,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-        self.btn_load_content()
+        self.btn_load_content(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -348,7 +348,7 @@ class Ui_MainWindow(object):
         self.page_3_btn.setText(_translate("MainWindow", "3 Page typing test"))
         self.page_3_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">3 Page</p></body></html>"))
 
-    def btn_load_content(self):
+    def btn_load_content(self, MainWindow):
         self.min_1_btn.clicked.connect(lambda: self.load_content(self.min_1_btn, MainWindow))
         self.min_3_btn.clicked.connect(lambda: self.load_content(self.min_3_btn, MainWindow))
         self.min_5_btn.clicked.connect(lambda: self.load_content(self.min_5_btn, MainWindow))

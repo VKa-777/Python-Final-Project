@@ -15,7 +15,7 @@ class Ui_MainWindow(object):
         self.ui = mainMenu.Ui_MainWindow()
         self.ui.setupUi(self.window)
         self.window.show()
-        current_window.hide()
+        current_window.close()
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -50,8 +50,8 @@ class Ui_MainWindow(object):
                     }
                 """)
         self.return_btn.setObjectName("return_btn")
-        self.restart_btn = QtWidgets.QPushButton(parent=self.heading_background)
         self.return_btn.clicked.connect(lambda: self.back_to_main_menu(MainWindow))
+        self.restart_btn = QtWidgets.QPushButton(parent=self.heading_background)
         self.restart_btn.setGeometry(QtCore.QRect(1250, 20, 71, 41))
         self.restart_btn.setStyleSheet("""
                     QPushButton {
