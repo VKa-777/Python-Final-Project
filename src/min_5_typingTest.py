@@ -100,6 +100,7 @@ class Ui_MainWindow(object):
         self.text_area.setGeometry(QtCore.QRect(10, 10, 1231, 461))
         self.text_area.setStyleSheet("font-size: 48pt;")
         self.text_area.setObjectName("text_area")
+        self.text_area.textChanged.connect(self.check_typing)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1337, 21))
@@ -124,6 +125,26 @@ class Ui_MainWindow(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:48pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#23d83e;\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo </span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#ea0c0f;\">li</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#23d83e;\">gula </span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#ea0c0f;\">ege</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#23d83e;\">t dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nas</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#ea0c0f;\">c</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#23d83e;\">etur ridiculus mus. Donec quam felis,  ultricies nec, pellentesque eu, pretium q</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#ea0c0f;\">ui</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#23d83e;\">s, sem. Nulla consequat massa quis enim. Donec pede justo, fring</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#ea0c0f;\">i</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#23d83e;\">lla vel, aliquet nec, vulputate  eget,</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600;\"> </span></p></body></html>"))
+
+    def check_typing(self):
+        expected_text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,"
+        user_text = self.text_area.toPlainText()
+        formatted_text = ""
+
+        for i, char in enumerate(user_text):
+            if i < len(expected_text) and char == expected_text[i]:
+                formatted_text += f'<span style="color:#23d83e;">{char}</span>'
+            else:
+                formatted_text += f'<span style="color:#ea0c0f;">{char}</span>'
+
+        cursor = self.text_area.textCursor()
+        cursor_position = cursor.position()
+
+        self.text_area.blockSignals(True)
+        self.text_area.setHtml(formatted_text)
+        cursor.setPosition(cursor_position)
+        self.text_area.setTextCursor(cursor)
+        self.text_area.blockSignals(False)
 
 
 if __name__ == "__main__":
