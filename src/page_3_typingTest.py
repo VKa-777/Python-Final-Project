@@ -73,6 +73,7 @@ class Ui_MainWindow(object):
                     }
                 """)
         self.restart_btn.setObjectName("restart_btn")
+        self.restart_btn.clicked.connect(self.replay)
         self.heading_label = QtWidgets.QLabel(parent=self.heading_background)
         self.heading_label.setGeometry(QtCore.QRect(483, 0, 371, 81))
         self.heading_label.setObjectName("heading_label")
@@ -141,6 +142,9 @@ class Ui_MainWindow(object):
         cursor.setPosition(cursor_position)
         self.text_area.setTextCursor(cursor)
         self.text_area.blockSignals(False)
+    def replay(self):
+        self.text_area.setReadOnly(False)
+        self.text_area.clear()
 
 
 if __name__ == "__main__":

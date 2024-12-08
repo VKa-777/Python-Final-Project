@@ -65,6 +65,7 @@ class Ui_MainWindow(object):
                     }
                 """)
         self.restart_btn.setObjectName("restart_btn")
+        self.restart_btn.clicked.connect(self.replay)
         self.heading_label = QtWidgets.QLabel(parent=self.heading_background)
         self.heading_label.setGeometry(QtCore.QRect(514, 0, 321, 75))
         self.heading_label.setObjectName("heading_label")
@@ -148,6 +149,12 @@ class Ui_MainWindow(object):
         cursor.setPosition(cursor_position)
         self.text_area.setTextCursor(cursor)
         self.text_area.blockSignals(False)
+    def replay(self):
+        self.time_left = 180  # Reset the timer to 1 minute
+        self.label.setText("3:00")  # Reset the label
+        self.text_area.setReadOnly(False)  # Make the text area editable
+        self.text_area.clear()  # Clear the text area
+        self.timer.start(1000)  # Restart the timer
 
 
 if __name__ == "__main__":
