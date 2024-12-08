@@ -99,10 +99,13 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        self.time_left = 180  # 1 minute in seconds
+        self.timer = QtCore.QTimer()
+        self.timer.timeout.connect(self.update_timer)
+        self.timer.start(1000)  # Update every second
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Minute Typing Test"))
@@ -115,7 +118,17 @@ class Ui_MainWindow(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:48pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#23d83e;\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo </span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#ea0c0f;\">li</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#23d83e;\">gula </span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#ea0c0f;\">ege</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#23d83e;\">t dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nas</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#ea0c0f;\">c</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#23d83e;\">etur ridiculus mus. Donec quam felis,  ultricies nec, pellentesque eu, pretium q</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#ea0c0f;\">ui</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#23d83e;\">s, sem. Nulla consequat massa quis enim. Donec pede justo, fring</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#ea0c0f;\">i</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#23d83e;\">lla vel, aliquet nec, vulputate  eget,</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600;\"> </span></p></body></html>"))
-
+        
+    def update_timer(self):
+        if self.time_left > 0:
+            self.time_left -= 1
+            minutes = self.time_left // 60
+            seconds = self.time_left % 60
+            self.label.setText(f"{minutes}:{seconds:02d}")
+        else:
+            self.timer.stop()
+            self.text_area.setReadOnly(True)
+    
     def check_typing(self):
         expected_text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,"
         user_text = self.text_area.toPlainText()
