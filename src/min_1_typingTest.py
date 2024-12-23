@@ -103,6 +103,11 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
+        # Add the textBrowser widget
+        self.textBrowser = QtWidgets.QTextBrowser(parent=self.centralwidget)
+        self.textBrowser.setGeometry(QtCore.QRect(50, 100, 1237, 500))
+        self.textBrowser.setObjectName("textBrowser")
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -117,13 +122,33 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "Minute Typing Test"))
         self.return_btn.setText(_translate("MainWindow", "←"))
         self.restart_btn.setText(_translate("MainWindow", "⟳"))
-        self.heading_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-family:\'Bahnschrift\'; font-size:28pt; font-weight:600; color:#ffffff;\">1 Minute typing test</span></p></body></html>"))
-        self.label.setText(_translate("MainWindow", "1:00"))
+        self.heading_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-family:'Bahnschrift'; font-size:28pt; font-weight:600; color:#ffffff;\">1 Minute typing test</span></p></body></html>"))
+        self.label.setText(_translate("MainWindow", "Typing Test"))
         self.text_area.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:48pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#23d83e;\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo </span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#ea0c0f;\">li</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#23d83e;\">gula </span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#ea0c0f;\">ege</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#23d83e;\">t dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nas</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#ea0c0f;\">c</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#23d83e;\">etur ridiculus mus. Donec quam felis,  ultricies nec, pellentesque eu, pretium q</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#ea0c0f;\">ui</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#23d83e;\">s, sem. Nulla consequat massa quis enim. Donec pede justo, fring</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#ea0c0f;\">i</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600; color:#23d83e;\">lla vel, aliquet nec, vulputate  eget,</span><span style=\" font-family:\'Bahnschrift\'; font-size:24pt; font-weight:600;\"> </span></p></body></html>"))
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:48pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#23d83e;\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo </span><span style=\" font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#ea0c0f;\">li</span><span style=\" font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#23d83e;\">gula </span><span style=\" font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#ea0c0f;\">ege</span><span style=\" font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#23d83e;\">t dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nas</span><span style=\" font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#ea0c0f;\">c</span><span style=\" font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#23d83e;\">etur ridiculus mus. Donec quam felis,  ultricies nec, pellentesque eu, pretium q</span><span style=\" font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#ea0c0f;\">ui</span><span style=\" font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#23d83e;\">s, sem. Nulla consequat massa quis enim. Donec pede justo, fring</span><span style=\" font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#ea0c0f;\">i</span><span style=\" font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#23d83e;\">lla vel, aliquet nec, vulputate  eget,</span><span style=\" font-family:'Bahnschrift'; font-size:24pt; font-weight:600;\"> </span></p></body></html>"))
+        self.textBrowser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Bahnschrift'; font-size:24pt; font-weight:296; color:#000000;\">Want to know how to improve your typing speed? The first step to learn to type fast and increase your typing speed is to take a test!</span></p>\n"
+"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Bahnschrift'; font-size:24pt; font-weight:296; color:#000000;\">The result of this WPM keyboard test will give both your typing speed and your typing accuracy.</span></p></body></html>"))
+        self.time_test_label.setText(_translate("MainWindow", "Timed Test"))
+        self.min_1_btn.setText(_translate("MainWindow", "1 minute typing test"))
+        self.min_1_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">1:00</p></body></html>"))
+        self.min_3_btn.setText(_translate("MainWindow", "3 minute typing test"))
+        self.min_3_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">3:00</p></body></html>"))
+        self.min_5_btn.setText(_translate("MainWindow", "5 minute typing test"))
+        self.min_5_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">5:00</p></body></html>"))
+        self.page_test_label.setText(_translate("MainWindow", "Page Test"))
+        self.page_1_btn.setText(_translate("MainWindow", "1 Page typing test"))
+        self.page_1_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">1 Page</p></body></html>"))
+        self.page_2_btn.setText(_translate("MainWindow", "2 Page typing test"))
+        self.page_2_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">2 Page</p></body></html>"))
+        self.page_3_btn.setText(_translate("MainWindow", "3 Page typing test"))
+        self.page_3_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">3 Page</p></body></html>"))
 
     def update_timer(self):
         if self.time_left > 0:
@@ -156,6 +181,13 @@ class Ui_MainWindow(object):
         self.text_area.setTextCursor(cursor)
         self.text_area.blockSignals(False)
 
+    def btn_load_content(self, MainWindow):
+        self.min_1_btn.clicked.connect(lambda: self.load_content(self.min_1_btn, MainWindow))
+        self.min_3_btn.clicked.connect(lambda: self.load_content(self.min_3_btn, MainWindow))
+        self.min_5_btn.clicked.connect(lambda: self.load_content(self.min_5_btn, MainWindow))
+        self.page_1_btn.clicked.connect(lambda: self.load_content(self.page_1_btn, MainWindow))
+        self.page_2_btn.clicked.connect(lambda: self.load_content(self.page_2_btn, MainWindow))
+        self.page_3_btn.clicked.connect(lambda: self.load_content(self.page_3_btn, MainWindow))
     def calculate_wpm(self):
         user_text = self.text_area.toPlainText()
         num_chars = len(user_text)
@@ -174,7 +206,6 @@ class Ui_MainWindow(object):
         self.text_area.setReadOnly(False)  # Make the text area editable
         self.text_area.clear()  # Clear the text area
         self.timer.start(1000)  # Restart the timer
-
 
 if __name__ == "__main__":
     import sys
