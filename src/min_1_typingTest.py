@@ -7,8 +7,23 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-import mainMenu
 import min_1_resultPage
+import mainMenu
+import os
+
+def read_all_text_files(directory):
+    text_files = [f for f in os.listdir(directory) if f.endswith('.txt')]
+    text_contents = {}
+
+    for file_name in text_files:
+        file_path = os.path.join(directory, file_name)
+        with open(file_path, 'r', encoding='utf-8') as file:
+            text_contents[file_name] = file.read()
+
+    return text_contents
+
+directory = '/Users/mac/PythonFinalProject/Python-Final-Project/assests/topic_text'
+all_texts = read_all_text_files(directory)
 
 class Ui_MainWindow(object):
     
@@ -18,18 +33,21 @@ class Ui_MainWindow(object):
         self.ui.setupUi(self.window)
         self.window.show()
         current_window.hide()
-
+    
     def setupUi(self, MainWindow):
         self.MainWindow = MainWindow  # Store the MainWindow reference
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1337, 720)
+        self.selected_text = None
         MainWindow.setMaximumSize(QtCore.QSize(1337, 720))
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+        
         self.heading_background = QtWidgets.QWidget(parent=self.centralwidget)
         self.heading_background.setGeometry(QtCore.QRect(0, 0, 1337, 78))
-        self.heading_background.setStyleSheet("background-color: #AAC4FF\n")
+        self.heading_background.setStyleSheet("background-color: #AAC4FF;")
         self.heading_background.setObjectName("heading_background")
+        
         self.return_btn = QtWidgets.QPushButton(parent=self.heading_background)
         self.return_btn.setGeometry(QtCore.QRect(20, 20, 71, 41))
         self.return_btn.clicked.connect(lambda: self.back_to_main_menu(MainWindow))
@@ -53,6 +71,7 @@ class Ui_MainWindow(object):
             }
         """)
         self.return_btn.setObjectName("return_btn")
+        
         self.restart_btn = QtWidgets.QPushButton(parent=self.heading_background)
         self.restart_btn.setGeometry(QtCore.QRect(1250, 20, 71, 41))
         self.restart_btn.setStyleSheet("""
@@ -79,24 +98,25 @@ class Ui_MainWindow(object):
         self.heading_label = QtWidgets.QLabel(parent=self.heading_background)
         self.heading_label.setGeometry(QtCore.QRect(514, 0, 400, 75))
         self.heading_label.setObjectName("heading_label")
+        
         self.label = QtWidgets.QLabel(parent=self.heading_background)
         self.label.setGeometry(QtCore.QRect(1156, 0, 61, 78))
         self.label.setStyleSheet("color: white;\n"
-"font: 63 24pt \"Bahnschrift SemiBold SemiConden\";\n"
-"")
+                                 "font: 63 24pt \"Bahnschrift SemiBold SemiConden\";")
         self.label.setObjectName("label")
+        
         self.background = QtWidgets.QWidget(parent=self.centralwidget)
         self.background.setGeometry(QtCore.QRect(0, 78, 1337, 642))
-        self.background.setStyleSheet("background-color: #B1B2FF;\n"
-"")
+        self.background.setStyleSheet("background-color: #B1B2FF;")
         self.background.setObjectName("background")
+        
         self.text_area_background = QtWidgets.QWidget(parent=self.background)
         self.text_area_background.setGeometry(QtCore.QRect(40, 69, 1261, 181))
         self.text_area_background.setStyleSheet("font-size: 48pt;\n"
-"background-color: #fff;\n"
-"border-radius: 5px;\n"
-"")
+                                               "background-color: #fff;\n"
+                                               "border-radius: 5px;")
         self.text_area_background.setObjectName("text_area_background")
+        
         self.text_area = QtWidgets.QTextEdit(parent=self.text_area_background)
         self.text_area.setGeometry(QtCore.QRect(10, 10, 1231, 171))
         self.text_area.setStyleSheet("font-size: 48pt;\n"
@@ -120,6 +140,7 @@ class Ui_MainWindow(object):
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1337, 22))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
+        
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
@@ -139,6 +160,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "Minute Typing Test"))
         self.return_btn.setText(_translate("MainWindow", "←"))
         self.restart_btn.setText(_translate("MainWindow", "⟳"))
+        self.heading_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-family:'Bahnschrift'; font-size:28pt; font-weight:600; color:#ffffff;\">1 Minute typing test</span></p></body></html>"))
         self.heading_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-family:'Bahnschrift'; font-size:28pt; font-weight:600; color:#ffffff;\">1 Minute typing test</span></p></body></html>"))
         self.label.setText(_translate("MainWindow", "1:00"))
         self.text_area.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -193,7 +215,25 @@ class Ui_MainWindow(object):
         self.window = QtWidgets.QMainWindow()
         self.ui = min_1_resultPage.Ui_MainWindow()
         self.ui.setupUi(self.window)
-        self.ui.display_results(wpm)
+
+        # Decide suggested texts
+        suggested_texts = []
+        if level in ["Advanced", "Expert"]:
+            suggestion_msg = "You did great! Try a harder text next time."
+            suggested_texts = [
+                all_texts.get('what-screams-i-have-depression.txt', 'Default Hard Text'),
+                all_texts.get('very_hard_text.txt', 'Default Very Hard Text')
+            ]
+        else:
+            suggestion_msg = "Keep practicing! Try an easier text to improve your skills."
+            suggested_texts = [
+                all_texts.get('book.txt', 'Default Book Text'),
+                all_texts.get('cats.txt', 'Default Cats Text')
+            ]
+        self.ui.display_results(wpm, level, suggested_texts, current_text)
+        # Override the "Try Again" button in result page to reset to default text
+        self.ui.try_again_btn.clicked.disconnect()
+        self.ui.try_again_btn.clicked.connect(lambda: self.ui.try_again(current_text))
         self.window.show()
         self.MainWindow.close()  # Use the stored MainWindow reference
     
