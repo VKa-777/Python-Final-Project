@@ -127,7 +127,7 @@ color: white;</string>
        <x>40</x>
        <y>69</y>
        <width>1261</width>
-       <height>481</height>
+       <height>181</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -142,7 +142,7 @@ border-radius: 5px;
         <x>10</x>
         <y>10</y>
         <width>1231</width>
-        <height>461</height>
+        <height>171</height>
        </rect>
       </property>
       <property name="html">
@@ -150,7 +150,40 @@ border-radius: 5px;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:48pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#23d83e;&quot;&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo &lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#ea0c0f;&quot;&gt;li&lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#23d83e;&quot;&gt;gula &lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#ea0c0f;&quot;&gt;ege&lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#23d83e;&quot;&gt;t dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nas&lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#ea0c0f;&quot;&gt;c&lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#23d83e;&quot;&gt;etur ridiculus mus. Donec quam felis,  ultricies nec, pellentesque eu, pretium q&lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#ea0c0f;&quot;&gt;ui&lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#23d83e;&quot;&gt;s, sem. Nulla consequat massa quis enim. Donec pede justo, fring&lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#ea0c0f;&quot;&gt;i&lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#23d83e;&quot;&gt;lla vel, aliquet nec, vulputate  eget,&lt;/span&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600;&quot;&gt; &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:600; color:#000000;&quot;&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,  ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate  eget, &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="typing_area_background_" native="true">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>310</y>
+       <width>1261</width>
+       <height>181</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size: 48pt;
+background-color: #fff;
+border-radius: 5px;
+</string>
+     </property>
+     <widget class="QTextEdit" name="typing_area">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>1231</width>
+        <height>171</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:48pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </widget>
@@ -162,7 +195,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>1337</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
