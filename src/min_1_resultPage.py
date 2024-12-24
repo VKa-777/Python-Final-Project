@@ -70,7 +70,7 @@ class Ui_MainWindow(object):
         self.result_heading.setObjectName("result_heading")
         
         self.test_complete_label = QtWidgets.QLabel(parent=self.result_container)
-        self.test_complete_label.setGeometry(QtCore.QRect(440, 74, 450, 61))
+        self.test_complete_label.setGeometry(QtCore.QRect(440, 74, 381, 61))
         self.test_complete_label.setStyleSheet("font: 25 20pt \"Bahnschrift\";\n"
                                                "background: none;\n"
                                                "color: black")
@@ -126,7 +126,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "Result"))
         self.heading_label.setText(_translate("MainWindow", "Result"))
         self.result_heading.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Typing Test Complete!</p></body></html>"))
-        self.test_complete_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:25px; font-weight: 600\">You typed the </span><span style=\" font-weight:600;\">1 Minute Typing Test</span></p></body></html>"))
+        self.test_complete_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-weight:400;\">You typed the </span><span style=\" font-weight:600;\">1 Minute Typing Test</span></p></body></html>"))
         self.try_again_btn.setText(_translate("MainWindow", "Try Again"))
         self.main_menu_btn.setText(_translate("MainWindow", "Main Menu"))
 
