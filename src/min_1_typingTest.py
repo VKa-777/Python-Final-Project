@@ -157,7 +157,7 @@ class Ui_MainWindow(object):
 
 
         # Timer setup
-        self.time_left = 10  # 1 minute in seconds
+        self.time_left = 60  # 1 minute in seconds
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update_timer)
         self.timer.start(1000)  # Update every second
