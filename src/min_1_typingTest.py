@@ -8,7 +8,6 @@
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 import mainMenu
-import min_1_resultPage
 
 class Ui_MainWindow(object):
     
@@ -20,7 +19,6 @@ class Ui_MainWindow(object):
         current_window.hide()
 
     def setupUi(self, MainWindow):
-        self.MainWindow = MainWindow  # Store the MainWindow reference
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1337, 720)
         MainWindow.setMaximumSize(QtCore.QSize(1337, 720))
@@ -144,8 +142,7 @@ class Ui_MainWindow(object):
             self.label.setText(f"{minutes}:{seconds:02d}")
         else:
             self.timer.stop()
-            self.typing_area.setReadOnly(True)
-            self.calculate_wpm()
+            self.text_area.setReadOnly(True)
 
     def check_typing(self):
         expected_text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,"
@@ -167,18 +164,6 @@ class Ui_MainWindow(object):
         self.text_area.setTextCursor(cursor)
         self.text_area.blockSignals(False)
 
-    def calculate_wpm(self):
-        user_text = self.text_area.toPlainText()
-        num_chars = len(user_text)
-        wpm = num_chars / 5  # Since the test is 1 minute, we don't need to divide by time
-        self.open_result_page(wpm)
-    def open_result_page(self, wpm):
-        self.window = QtWidgets.QMainWindow()
-        self.ui = min_1_resultPage.Ui_MainWindow()
-        self.ui.setupUi(self.window)
-        self.ui.display_results(wpm)
-        self.window.show()
-        self.MainWindow.close()  
     def replay(self):
         self.time_left = 60  # Reset the timer to 1 minute
         self.label.setText("1:00")  # Reset the label
