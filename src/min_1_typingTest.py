@@ -37,11 +37,12 @@ print(all_texts)
 class Ui_MainWindow(object):
     
     def back_to_main_menu(self, current_window):
+        self.timer.stop()
         self.window = QtWidgets.QMainWindow()
         self.ui = mainMenu.Ui_MainWindow()
         self.ui.setupUi(self.window)
         self.window.show()
-        current_window.hide()
+        current_window.close()
 
     def setupUi(self, MainWindow):
         self.MainWindow = MainWindow
@@ -125,9 +126,12 @@ class Ui_MainWindow(object):
         self.text_area_background.setObjectName("text_area_background")
         self.text_area = QtWidgets.QTextEdit(parent=self.text_area_background)
         self.text_area.setGeometry(QtCore.QRect(10, 10, 1231, 171))
-        self.text_area.setStyleSheet("font-size: 48pt;")
+        self.text_area.setStyleSheet("font-size:48pt; font-weight:400; font-style:normal;")
         self.text_area.setObjectName("text_area")
         self.text_area.setReadOnly(True)
+        self.text_area.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.NoTextInteraction)  # Disable text selection
+        self.text_area.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.NoContextMenu)  # Disable context menu
+
         self.typing_area_background_2 = QtWidgets.QWidget(parent=self.background)
         self.typing_area_background_2.setGeometry(QtCore.QRect(40, 310, 1261, 181))
         self.typing_area_background_2.setStyleSheet("font-size: 48pt;\n"
@@ -155,7 +159,7 @@ class Ui_MainWindow(object):
 
 
         # Timer setup
-        self.time_left = 60  # 1 minute in seconds
+        self.time_left = 10  # 1 minute in seconds
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update_timer)
         self.timer.start(1000)  # Update every second
@@ -308,21 +312,21 @@ class Ui_MainWindow(object):
 
 
     def replay(self):
-        print(f"Replaying test with selected_text: {self.selected_text}")  # Debugging line
+        # print(f"Replaying test with selected_text: {self.selected_text}")  # Debugging line
         self.time_left = 60  # Reset the timer to 1 minute
         self.label.setText("1:00")  # Reset the label
-        self.text_area.setReadOnly(False)  # Make the text area editable
         self.typing_area.clear()  # Clear the text area
-
+        
         # Set the text area to one of the suggested texts
-        if self.selected_text:
-            self.text_area.setPlainText(self.selected_text)
-            print(f"Set text area to selected_text: {self.selected_text}")  # Debugging line
-        else:
-            # Default text
-            default_text = all_texts.get('book.txt', '')
-            self.text_area.setPlainText(default_text)
-            print(f"Set text area to default text: {default_text}")  # Debugging line
+        # if self.selected_text:
+        #     self.text_area.setPlainText(self.selected_text)
+        #     self.text_area.setStyleSheet("font-size:48pt; font-weight:400; font-style:normal;")
+        #     print(f"Set text area to selected_text: {self.selected_text}")  # Debugging line
+        # else:
+        #     # Default text
+        #     default_text = all_texts.get('book.txt', '')
+        #     self.text_area.setPlainText(default_text)
+        #     print(f"Set text area to default text: {default_text}")  # Debugging line
         self.timer.start(1000)  # Restart the timer
         
 if __name__ == "__main__":
