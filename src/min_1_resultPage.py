@@ -4,6 +4,10 @@ import mainMenu
 import os
 
 def read_all_text_files(directory):
+    if not os.path.exists(directory):
+        print(f"Directory {directory} does not exist.")
+        return {}
+
     text_files = [f for f in os.listdir(directory) if f.endswith('.txt')]
     text_contents = {}
 
@@ -14,8 +18,10 @@ def read_all_text_files(directory):
 
     return text_contents
 
-directory = '/Users/mac/PythonFinalProject/Python-Final-Project/assests/topic_text'
+# Use a raw string to avoid issues with backslashes
+directory = r'C:\Users\Trang Do\Documents\GitHub\python\Python-Final-Project\assets\topic_text'
 all_texts = read_all_text_files(directory)
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -70,14 +76,14 @@ class Ui_MainWindow(object):
         self.result_heading.setObjectName("result_heading")
         
         self.test_complete_label = QtWidgets.QLabel(parent=self.result_container)
-        self.test_complete_label.setGeometry(QtCore.QRect(440, 74, 381, 61))
+        self.test_complete_label.setGeometry(QtCore.QRect(375, 74, 500, 61))
         self.test_complete_label.setStyleSheet("font: 25 20pt \"Bahnschrift\";\n"
                                                "background: none;\n"
                                                "color: black")
         self.test_complete_label.setObjectName("test_complete_label")
         
         self.wpm_and_level_label = QtWidgets.QLabel(parent=self.result_container)
-        self.wpm_and_level_label.setGeometry(QtCore.QRect(363, 141, 531, 61))
+        self.wpm_and_level_label.setGeometry(QtCore.QRect(250, 141, 800, 61))
         self.wpm_and_level_label.setStyleSheet("font: 25 20pt \"Bahnschrift\";\n"
                                               "background: none;\n"
                                               "color: black")
