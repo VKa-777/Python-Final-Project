@@ -1,5 +1,3 @@
-
-
 from PyQt6 import QtCore, QtGui, QtWidgets
 import min_1_typingTest
 import mainMenu
@@ -60,7 +58,7 @@ class Ui_MainWindow(object):
                                          "font: 63 16pt \"Bahnschrift SemiBold\";")
         self.hard_text_btn.setObjectName("hard_text_btn")
         self.hard_text_btn.clicked.connect(self.click_hard_text)
-        
+        self.hard_text_btn.setText("Hard Mode")
         self.very_hard_text_btn = QtWidgets.QPushButton(parent=self.result_container)
         self.very_hard_text_btn.setGeometry(QtCore.QRect(789, 329, 171, 41))
         self.very_hard_text_btn.setStyleSheet("background-color: #FFD966;\n"
@@ -69,7 +67,7 @@ class Ui_MainWindow(object):
                                              "font: 63 16pt \"Bahnschrift SemiBold\";")
         self.very_hard_text_btn.setObjectName("very_hard_text_btn")
         self.very_hard_text_btn.clicked.connect(self.click_very_hard_text)
-        
+        self.very_hard_text_btn.setText("Extreme Mode")
         self.result_heading = QtWidgets.QLabel(parent=self.result_container)
         self.result_heading.setGeometry(QtCore.QRect(476, 14, 321, 46))
         self.result_heading.setStyleSheet("color: black;\n"
@@ -116,8 +114,10 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
         # Connect buttons to functions
-        self.try_again_btn.clicked.connect(lambda: self.try_again(self.current_text))
-        self.main_menu_btn.clicked.connect(self.go_to_main_menu)
+        self.try_again_btn.clicked.connect(self.on_try_again_clicked)
+        self.main_menu_btn.clicked.connect(lambda: self.go_to_main_menu(MainWindow))
+        
+        
 
     def display_results(self, wpm, level, suggested_texts, current_text):
         self.suggested_texts = suggested_texts
@@ -128,6 +128,7 @@ class Ui_MainWindow(object):
             f"<span style=\" font-weight:400;\"> and your level is </span>"
             f"<span style=\" font-weight:400; color:#23d83e;\">{level}</span></p></body></html>"
         )
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -147,24 +148,29 @@ class Ui_MainWindow(object):
             self.ui.selected_text = selected_text
             # ▼ Add this to override default Lorem:
             self.ui.text_area.setPlainText(selected_text)
+            self.ui.text_area.setStyleSheet("font-size:30pt; font-weight:400; font-style:normal;")  # Set the font size to 18pt
+
             self.window.show()
-            self.MainWindow.close()
+            self.MainWindow.hide()
         else:
             QtWidgets.QMessageBox.warning(self.MainWindow, "Error", "No Hard Text available.")
 
     def click_very_hard_text(self):
         if hasattr(self, 'suggested_texts') and len(self.suggested_texts) > 1:
             selected_text = self.suggested_texts[1]
-            print(f"Very Hard Text Selected: {selected_text}")  # Debugging line
             self.window = QtWidgets.QMainWindow()
             self.ui = min_1_typingTest.Ui_MainWindow()
             self.ui.setupUi(self.window)
             self.ui.selected_text = selected_text
+            self.ui.text_area.setPlainText(selected_text)
             self.window.show()
-            self.MainWindow.close()
+            self.MainWindow.hide()
         else:
             QtWidgets.QMessageBox.warning(self.MainWindow, "Error", "No Very Hard Text available.")
 
+    def on_try_again_clicked(self):
+        self.try_again(self.current_text)
+        
     def try_again(self, current_text):
         print(f"Trying again with text: {current_text}")  # Debugging line
         self.window = QtWidgets.QMainWindow()
@@ -178,14 +184,14 @@ class Ui_MainWindow(object):
             self.ui.selected_text = None
             self.ui.text_area.setPlainText(all_texts.get('book.txt', ''))
         self.window.show()
-        self.MainWindow.close()  # Close the result window
+        self.MainWindow.hide()
 
-    def go_to_main_menu(self):
+    def go_to_main_menu(self, current_window):
         self.window = QtWidgets.QMainWindow()
         self.ui = mainMenu.Ui_MainWindow()
         self.ui.setupUi(self.window)
         self.window.show()
-        self.MainWindow.close()  # Close the result window
+        current_window.hide()  # Close the result window
 
 if __name__ == "__main__":
     import sys
