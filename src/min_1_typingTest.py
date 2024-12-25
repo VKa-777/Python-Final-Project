@@ -23,16 +23,18 @@ def read_all_text_files(directory):
         file_path = os.path.join(directory, file_name)
         with open(file_path, 'r', encoding='utf-8') as file:
             text_contents[file_name] = file.read()
+
     return text_contents
+
 def get_text_files_directory():
+    # Get the directory path of the script
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    # Go up one level from src
-    project_dir = os.path.dirname(base_dir)
-    return os.path.join(project_dir, 'assests', 'topic_text')
+    # Join with the relative path to the 'assets/topic_text' directory
+    return os.path.join(base_dir, r'assest/topic_text')
 
 directory = get_text_files_directory()
 all_texts = read_all_text_files(directory)
-print(all_texts)
+
 
 class Ui_MainWindow(object):
     
@@ -178,7 +180,7 @@ class Ui_MainWindow(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:48pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Bahnschrift\'; font-size:22pt; font-weight:600; color:#000000;\">Books are portals to different worlds, offering a blend of knowledge, adventure, and imagination. They can whisk you away to distant lands, introduce you to fascinating characters, and immerse you in rich narratives. Whether it's a timeless classic or a contemporary bestseller, a book holds the power to inspire, educate, and entertain. It provides a sanctuary for the mind, a place where you can explore new ideas and perspectives.In a world often dominated by screens, the simple pleasure of turning a page and getting lost in a story is a timeless joy that never fades. From the scent of ink on paper to the tactile feel of pages beneath your fingers, reading a book is a sensory experience. Each book has its own unique journey, from the imagination of the author to the hands of the reader, carrying with it the potential to change minds and hearts. Books can challenge our beliefs, expand our horizons, and offer comfort and solace in times of need.They are more than just physical objects; they are vessels of human thought and creativity, capturing the essence of different cultures, histories, and emotions. Through books, we can connect with people and ideas from across the globe and throughout time, fostering empathy and understanding. They are a testament to the enduring power of stories and the human desire to share our experiences and knowledge with others. Whether you're seeking escape, enlightenment, or entertainment, there's a book out there waiting to be discovered. </span></p></body></html>"))
+"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Bahnschrift\'; font-size:22pt; font-weight:600; color:#000000;\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,  ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate  eget, </span></p></body></html>"))
         self.typing_area.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -192,7 +194,12 @@ class Ui_MainWindow(object):
             print("Using selected_text for expected_text.")  # Debugging line
         else:
             expected_text = (
-                "Books are portals to different worlds, offering a blend of knowledge, adventure, and imagination. They can whisk you away to distant lands, introduce you to fascinating characters, and immerse you in rich narratives. Whether it's a timeless classic or a contemporary bestseller, a book holds the power to inspire, educate, and entertain. It provides a sanctuary for the mind, a place where you can explore new ideas and perspectives.In a world often dominated by screens, the simple pleasure of turning a page and getting lost in a story is a timeless joy that never fades. From the scent of ink on paper to the tactile feel of pages beneath your fingers, reading a book is a sensory experience. Each book has its own unique journey, from the imagination of the author to the hands of the reader, carrying with it the potential to change minds and hearts. Books can challenge our beliefs, expand our horizons, and offer comfort and solace in times of need.They are more than just physical objects; they are vessels of human thought and creativity, capturing the essence of different cultures, histories, and emotions. Through books, we can connect with people and ideas from across the globe and throughout time, fostering empathy and understanding. They are a testament to the enduring power of stories and the human desire to share our experiences and knowledge with others. Whether you're seeking escape, enlightenment, or entertainment, there's a book out there waiting to be discovered."
+                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. "
+                "Aenean commodo ligula eget dolor. Aenean massa. "
+                "Cum sociis natoque penatibus et magnis dis parturient montes, "
+                "nascetur ridiculus mus. Donec quam felis, ultricies nec, "
+                "pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. "
+                "Donec pede justo, fringilla vel, aliquet nec, vulputate eget,"
             )
             print("Using default text for expected_text.")  # Debugging line
 
@@ -248,51 +255,23 @@ class Ui_MainWindow(object):
         self.window = QtWidgets.QMainWindow()
         self.ui = min_1_resultPage.Ui_MainWindow()
         self.ui.setupUi(self.window)
+    
+        # Decide suggested texts
+        suggested_texts = []
         if level in ["Advanced", "Expert"]:
             suggestion_msg = "You did great! Try a harder text next time."
             suggested_texts = [
                 all_texts.get('what-screams-i-have-depression.txt', 'Default Hard Text'),
                 all_texts.get('very_hard_text.txt', 'Default Very Hard Text')
             ]
-            if level == "Advanced":
-                self.selected_text = all_texts.get('what-screams-i-have-depression.txt', 'Default Hard Text')
-            elif level == "Expert":
-                self.selected_text = all_texts.get('very_hard_text.txt', 'Default Very Hard Text')
         else:
             suggestion_msg = "Keep practicing! Try an easier text to improve your skills."
             suggested_texts = [
-                all_texts.get('book.txt', 'Default Easy Text'),
-                all_texts.get('cats.txt', 'Default Medium Text')
+                all_texts.get('book.txt', 'Default Book Text'),
+                all_texts.get('cats.txt', 'Default Cats Text')
             ]
-            if level == "Advanced":
-                self.selected_text = all_texts.get('book.txt', 'Default Easy Text')
-            elif level == "Expert":
-                self.selected_text = all_texts.get('cats.txt', 'Default Medium Text')
-            # Change button labels in result page
-            self.ui.hard_text_btn.setText("Easy Text")
-            self.ui.very_hard_text_btn.setText("Medium Text")
-            # Update the displayed text area
-            _translate = QtCore.QCoreApplication.translate
-            self.text_area.setHtml(_translate("MainWindow",
-                "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
-                "\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-                "<html><head><meta name=\"qrichtext\" content=\"1\" />"
-                "<style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head>"
-                "<body style=\" font-family:'MS Shell Dlg 2'; font-size:48pt; "
-                "font-weight:400; font-style:normal;\">"
-                "<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; "
-                "margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">"
-                "<span style=\" font-family:'Bahnschrift'; font-size:22pt; "
-                "font-weight:600; color:#000000;\">Lorem ipsum dolor sit amet, "
-                "consectetuer adipiscing elit. Aenean commodo ligula eget dolor. "
-                "Aenean massa. Cum sociis natoque penatibus et magnis dis parturient "
-                "montes, nascetur ridiculus mus. Donec quam felis,  ultricies nec, "
-                "pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. "
-                "Donec pede justo, fringilla vel, aliquet nec, vulputate  eget, "
-                "</span></p></body></html>"
-            ))
-            self.text_area.setPlainText(self.selected_text)
         self.ui.display_results(wpm, level, suggested_texts, current_text)
+        # Override the "Try Again" button in result page to reset to default text
         self.ui.try_again_btn.clicked.disconnect()
         self.ui.try_again_btn.clicked.connect(lambda: self.ui.try_again(current_text))
         self.window.show()
@@ -337,8 +316,3 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec())
-
-
-
-
-

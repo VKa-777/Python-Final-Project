@@ -19,7 +19,7 @@ def read_all_text_files(directory):
     return text_contents
 
 # Use a raw string to avoid issues with backslashes
-directory = '/Users/mac/PythonFinalProject/Python-Final-Project/assests/topic_text'
+directory = r'C:\Users\Trang Do\Documents\GitHub\python\Python-Final-Project\assets\topic_text'
 all_texts = read_all_text_files(directory)
 
 
@@ -142,14 +142,11 @@ class Ui_MainWindow(object):
     def click_hard_text(self):
         if hasattr(self, 'suggested_texts') and len(self.suggested_texts) > 0:
             selected_text = self.suggested_texts[0]
+            print(f"Hard Text Selected: {selected_text}")  # Debugging line
             self.window = QtWidgets.QMainWindow()
             self.ui = min_1_typingTest.Ui_MainWindow()
             self.ui.setupUi(self.window)
             self.ui.selected_text = selected_text
-            # ▼ Add this to override default Lorem:
-            self.ui.text_area.setPlainText(selected_text)
-            self.ui.text_area.setStyleSheet("font-size:30pt; font-weight:400; font-style:normal;")  # Set the font size to 18pt
-
             self.window.show()
             self.MainWindow.hide()
         else:
