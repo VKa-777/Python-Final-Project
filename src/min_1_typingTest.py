@@ -30,11 +30,11 @@ def get_text_files_directory():
     # Get the directory path of the script
     base_dir = os.path.dirname(os.path.abspath(__file__))
     # Join with the relative path to the 'assets/topic_text' directory
-    return os.path.join(base_dir, r'assest/topic_text')
+    return os.path.join(base_dir, r'assests/topic_text')
 
 directory = get_text_files_directory()
 all_texts = read_all_text_files(directory)
-
+# print(all_texts)
 
 class Ui_MainWindow(object):
     
@@ -282,6 +282,7 @@ class Ui_MainWindow(object):
         # Set the chosen text, then replay test
         print(f"Suggested Text Selected: {new_text}")  # Debugging line
         self.selected_text = new_text
+        self.expected_text = new_text
         self.replay()
 
     def click_default_text(self):
@@ -296,16 +297,15 @@ class Ui_MainWindow(object):
         self.label.setText("1:00")  # Reset the label
         self.typing_area.clear()  # Clear the text area
         
-        # Set the text area to one of the suggested texts
-        # if self.selected_text:
-        #     self.text_area.setPlainText(self.selected_text)
-        #     self.text_area.setStyleSheet("font-size:48pt; font-weight:400; font-style:normal;")
-        #     print(f"Set text area to selected_text: {self.selected_text}")  # Debugging line
-        # else:
-        #     # Default text
-        #     default_text = all_texts.get('book.txt', '')
-        #     self.text_area.setPlainText(default_text)
-        #     print(f"Set text area to default text: {default_text}")  # Debugging line
+        if self.selected_text:
+            self.text_area.setPlainText(self.selected_text)
+            self.text_area.setStyleSheet("font-size:48pt; font-weight:400; font-style:normal;")
+            print(f"Set text area to selected_text: {self.selected_text}")  # Debugging line
+        else:
+            # Default text
+            default_text = all_texts.get('book.txt', '')
+            self.text_area.setPlainText(default_text)
+            print(f"Set text area to default text: {default_text}")  # Debugging line
         self.timer.start(1000)  # Restart the timer
         
 if __name__ == "__main__":

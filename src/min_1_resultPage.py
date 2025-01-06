@@ -19,9 +19,9 @@ def read_all_text_files(directory):
     return text_contents
 
 # Use a raw string to avoid issues with backslashes
-directory = r'C:\Users\Trang Do\Documents\GitHub\python\Python-Final-Project\assets\topic_text'
+directory = '/Users/mac/PythonFinalProject/Python-Final-Project/assests/topic_text'
 all_texts = read_all_text_files(directory)
-
+# print(all_texts)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -114,9 +114,10 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
         # Connect buttons to functions
+        self.hard_text_btn.clicked.connect(self.click_hard_text)
+        self.very_hard_text_btn.clicked.connect(self.click_very_hard_text)
         self.try_again_btn.clicked.connect(self.on_try_again_clicked)
         self.main_menu_btn.clicked.connect(lambda: self.go_to_main_menu(MainWindow))
-        
         
 
     def display_results(self, wpm, level, suggested_texts, current_text):
@@ -142,11 +143,15 @@ class Ui_MainWindow(object):
     def click_hard_text(self):
         if hasattr(self, 'suggested_texts') and len(self.suggested_texts) > 0:
             selected_text = self.suggested_texts[0]
-            print(f"Hard Text Selected: {selected_text}")  # Debugging line
             self.window = QtWidgets.QMainWindow()
             self.ui = min_1_typingTest.Ui_MainWindow()
             self.ui.setupUi(self.window)
             self.ui.selected_text = selected_text
+            # ▼ Add this to override default Lorem:
+            self.ui.text_area.setPlainText(selected_text)
+            self.ui.text_area.setStyleSheet("font: 63 16pt \"Bahnschrift SemiBold\"; color: black")
+            print(self.ui.text_area.toPlainText())
+
             self.window.show()
             self.MainWindow.hide()
         else:
