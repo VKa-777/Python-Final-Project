@@ -241,14 +241,31 @@ class Ui_MainWindow(object):
             return "Advanced"
         else:
             return "Expert"
-        
+    def calculate_accuracy(self, user_text, expected_text):
+        if not user_text:  # Avoid division by zero
+            return 0.0
+        correct_chars = sum(1 for i in range(min(len(user_text), len(expected_text))) 
+                            if user_text[i] == expected_text[i])
+        return (correct_chars / len(user_text)) * 100
     def calculate_wpm(self):
         user_text = self.typing_area.toPlainText()
         wpm = len(user_text) / 5
         level = self.determine_level(wpm)
-        print(f"Calculated WPM: {wpm}, Level: {level}")  # Debugging line
+        if self.selected_text:
+            expected_text = self.selected_text
+        else:
+            expected_text = (
+                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. "
+                "Aenean commodo ligula eget dolor. Aenean massa. "
+                "Cum sociis natoque penatibus et magnis dis parturient montes, "
+                "nascetur ridiculus mus. Donec quam felis, ultricies nec, "
+                "pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. "
+                "Donec pede justo, fringilla vel, aliquet nec, vulputate eget,"
+            )
+        accuracy = self.calculate_accuracy(user_text, expected_text)
+        print(f"Calculated WPM: {wpm}, Level: {level}, Accuracy: {accuracy:.2f}%")
         # Pass the currently selected text to open_result_page
-        self.open_result_page(wpm, level, self.selected_text)
+        self.open_result_page(wpm * accuracy * 0.01, level, self.selected_text)
 
     def open_result_page(self, wpm, level, current_text):
         print(f"Opening result page with text: {current_text}")  # Debugging line
