@@ -247,6 +247,17 @@ class Ui_MainWindow(object):
         correct_chars = sum(1 for i in range(min(len(user_text), len(expected_text))) 
                             if user_text[i] == expected_text[i])
         return (correct_chars / len(user_text)) * 100
+    def count_incorrect_characters(self, user_text, expected_text):
+        from collections import Counter
+        incorrect_dict = Counter()
+        length = min(len(user_text), len(expected_text))
+        for i in range(length):
+            if user_text[i] != expected_text[i]:
+                incorrect_dict[expected_text[i]] += 1
+        # Count extra characters if user typed longer than expected
+        for i in range(length, len(user_text)):
+            incorrect_dict[expected_text[i]] += 1
+        return dict(incorrect_dict)
     def calculate_wpm(self):
         user_text = self.typing_area.toPlainText()
         wpm = len(user_text) / 5
@@ -263,11 +274,11 @@ class Ui_MainWindow(object):
                 "Donec pede justo, fringilla vel, aliquet nec, vulputate eget,"
             )
         accuracy = self.calculate_accuracy(user_text, expected_text)
+        incorrect_chars_dict = self.count_incorrect_characters(user_text, expected_text)
         print(f"Calculated WPM: {wpm}, Level: {level}, Accuracy: {accuracy:.2f}%")
-        # Pass the currently selected text to open_result_page
-        self.open_result_page(wpm * accuracy * 0.01, level, self.selected_text)
+        self.open_result_page(wpm * accuracy * 0.01, level, self.selected_text, len(user_text), incorrect_chars_dict)
 
-    def open_result_page(self, wpm, level, current_text):
+    def open_result_page(self, wpm, level, current_text, total_chars_entered, incorrect_chars_dict):
         print(f"Opening result page with text: {current_text}")  # Debugging line
         self.window = QtWidgets.QMainWindow()
         self.ui = min_1_resultPage.Ui_MainWindow()
@@ -287,7 +298,7 @@ class Ui_MainWindow(object):
                 all_texts.get('book.txt', 'Default Book Text'),
                 all_texts.get('cats.txt', 'Default Cats Text')
             ]
-        self.ui.display_results(wpm, level, suggested_texts, current_text)
+        self.ui.display_results(wpm, level, suggested_texts, current_text, total_chars_entered, incorrect_chars_dict)
         # Override the "Try Again" button in result page to reset to default text
         self.ui.try_again_btn.clicked.disconnect()
         self.ui.try_again_btn.clicked.connect(lambda: self.ui.try_again(current_text))
