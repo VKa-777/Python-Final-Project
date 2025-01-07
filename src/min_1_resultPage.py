@@ -120,14 +120,26 @@ class Ui_MainWindow(object):
         self.main_menu_btn.clicked.connect(lambda: self.go_to_main_menu(MainWindow))
         
 
-    def display_results(self, wpm, level, suggested_texts, current_text):
+    def display_results(self, wpm, level, suggested_texts, current_text, total_chars, incorrect_chars_dict):
         self.suggested_texts = suggested_texts
         self.current_text = current_text
         self.wpm_and_level_label.setText(
-            f"<html><head/><body><p align=\"center\"><span style=\" font-weight:400;\">Your speed was </span>"
-            f"<span style=\" font-weight:400; color:#23d83e;\">{wpm:.2f} WPM</span>"
-            f"<span style=\" font-weight:400;\"> and your level is </span>"
-            f"<span style=\" font-weight:400; color:#23d83e;\">{level}</span></p></body></html>"
+            f"<html><head/><body><p align=\"center\">"
+            f"Your speed was <span style=\"color:#23d83e;\">{wpm:.2f} WPM</span>, "
+            f"level: <span style=\"color:#23d83e;\">{level}</span></p></body></html>"
+        )
+
+        # Add a label for incorrect character stats
+        self.incorrect_chars_label = QtWidgets.QLabel(parent=self.result_container)
+        self.incorrect_chars_label.setGeometry(QtCore.QRect(250, 210, 800, 61))
+        self.incorrect_chars_label.setObjectName("incorrect_chars_label")
+
+        stats_str = ", ".join([f"'{char}': {count}" for char, count in incorrect_chars_dict.items()])
+        self.incorrect_chars_label.setText(
+            f"<html><head/><body><p align=\"center\">"
+            f"You entered {total_chars} characters.<br>"
+            f"Incorrect characters: {stats_str}"
+            f"</p></body></html>"
         )
 
 
