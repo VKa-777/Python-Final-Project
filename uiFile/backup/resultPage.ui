@@ -89,7 +89,7 @@ font-weight: bold;
 </string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Congratulation!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Typing Test Complete!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QLabel" name="test_complete_label">
@@ -107,14 +107,14 @@ background: none;
 color: black</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;You've completed this level&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;You typed the &lt;/span&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;1 Minute Typing Test&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QLabel" name="wpm_and_accuracy_label">
      <property name="geometry">
       <rect>
        <x>363</x>
-       <y>110</y>
+       <y>141</y>
        <width>531</width>
        <height>61</height>
       </rect>
@@ -144,7 +144,7 @@ color: black;
 font: 63 16pt &quot;Bahnschrift SemiBold&quot;;</string>
      </property>
      <property name="text">
-      <string>Main Menu</string>
+      <string>Try again</string>
      </property>
     </widget>
     <widget class="QPushButton" name="main_menu_btn">
@@ -163,25 +163,7 @@ color: black;
 font: 63 16pt &quot;Bahnschrift SemiBold&quot;;</string>
      </property>
      <property name="text">
-      <string>Next Level</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="test_complete_label_2">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>150</y>
-       <width>381</width>
-       <height>61</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 25 20pt &quot;Bahnschrift&quot;;
-background: none;
-color: black</string>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;Let's move on to the next stage&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>Main Menu</string>
      </property>
     </widget>
    </widget>
