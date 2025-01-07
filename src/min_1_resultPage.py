@@ -136,17 +136,19 @@ class Ui_MainWindow(object):
 
         stats_str = ", ".join([f"'{char}': {count}" for char, count in incorrect_chars_dict.items()])
         self.incorrect_chars_label.setText(
-            f"<html><head/><body><p align=\"center\">"
-            f"You entered {total_chars} characters.<br>"
-            f"Incorrect characters: {stats_str}"
-            f"</p></body></html>"
+        f"<html><head/><body><p align=\"center\" style=\"margin-right: 70px; margin-bottom: 90px;\">"
+        f"<span style=\"font-size:14pt; font-weight:400;\">You entered </span>"
+        f"<span style=\"font-size:14pt; font-weight:600;\">{total_chars} characters.</span><br>"
+        f"<span style=\"font-size:14pt; font-weight:400;\">Incorrect characters: </span>"
+        f"<span style=\"font-size:14pt; font-weight:600;\">{stats_str}</span>"
+        f"</p></body></html>"
         )
 
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Result"))
-        self.heading_label.setText(_translate("MainWindow", "Result"))
+        self.heading_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\" style=\"font-size:24pt;\">Result</p></body></html>")))
         self.result_heading.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Typing Test Complete!</p></body></html>"))
         self.test_complete_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-weight:400;\">You typed the </span><span style=\" font-weight:600;\">1 Minute Typing Test</span></p></body></html>"))
         self.try_again_btn.setText(_translate("MainWindow", "Try Again"))
