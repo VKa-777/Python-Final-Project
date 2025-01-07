@@ -87,7 +87,7 @@ text-align: center;</string>
       </rect>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:28pt; font-weight:600; color:#ffffff;&quot;&gt;2 Pages Typing Test&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:28pt; font-weight:600; color:#ffffff;&quot;&gt;Medium Literature Test&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </widget>
@@ -104,30 +104,13 @@ text-align: center;</string>
      <string notr="true">background-color: #B1B2FF;
 </string>
     </property>
-    <widget class="QLabel" name="current_page_label">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>0</y>
-       <width>111</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 36pt &quot;OCR A Extended&quot;;
-color: white;</string>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:22pt; font-weight:600; color:#ffffff;&quot;&gt;Page 1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-    </widget>
     <widget class="QWidget" name="text_area_background" native="true">
      <property name="geometry">
       <rect>
        <x>40</x>
        <y>69</y>
        <width>1261</width>
-       <height>481</height>
+       <height>191</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -142,7 +125,7 @@ border-radius: 5px;
         <x>10</x>
         <y>10</y>
         <width>1231</width>
-        <height>461</height>
+        <height>421</height>
        </rect>
       </property>
       <property name="html">
@@ -154,6 +137,39 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="text_area_background_2" native="true">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>310</y>
+       <width>1261</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size: 48pt;
+background-color: #fff;
+border-radius: 5px;
+</string>
+     </property>
+     <widget class="QTextEdit" name="text_area_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>1231</width>
+        <height>461</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:48pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -162,7 +178,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>1337</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

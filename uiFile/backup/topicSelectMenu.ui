@@ -63,8 +63,8 @@ font-weight: bold;</string>
    <widget class="QWidget" name="main_container" native="true">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>120</y>
+      <x>20</x>
+      <y>160</y>
       <width>1314</width>
       <height>551</height>
      </rect>
@@ -80,7 +80,7 @@ border-radius: 5px;</string>
        <x>10</x>
        <y>13</y>
        <width>1291</width>
-       <height>164</height>
+       <height>101</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -92,7 +92,7 @@ border-radius: 5px;</string>
         <x>10</x>
         <y>0</y>
         <width>1271</width>
-        <height>71</height>
+        <height>101</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -103,17 +103,17 @@ border-radius: 5px;</string>
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.875pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:36pt; font-weight:296; color:#000000;&quot;&gt;Choose the mode as you needed&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Bahnschrift'; font-size:24pt; font-weight:296; color:#000000;&quot;&gt;Improve your typing speed and accuracy by taking this fun WPM test. Choose a topic below to get started!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </widget>
     <widget class="QFrame" name="frame_2">
      <property name="geometry">
       <rect>
-       <x>17</x>
-       <y>86</y>
+       <x>20</x>
+       <y>130</y>
        <width>1281</width>
-       <height>411</height>
+       <height>321</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -129,8 +129,8 @@ border-radius: 10px;</string>
      <widget class="QWidget" name="widget_3" native="true">
       <property name="geometry">
        <rect>
-        <x>318</x>
-        <y>150</y>
+        <x>260</x>
+        <y>110</y>
         <width>231</width>
         <height>101</height>
        </rect>
@@ -188,15 +188,15 @@ font: 11pt &quot;Bahnschrift&quot;;</string>
 color: black;</string>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Go as you want&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Literature&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
      </widget>
      <widget class="QWidget" name="widget_4" native="true">
       <property name="geometry">
        <rect>
-        <x>669</x>
-        <y>150</y>
+        <x>610</x>
+        <y>100</y>
         <width>231</width>
         <height>101</height>
        </rect>
@@ -254,7 +254,73 @@ font: 11pt &quot;Bahnschrift&quot;;</string>
 color: black;</string>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Go random&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Science&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="widget_5" native="true">
+      <property name="geometry">
+       <rect>
+        <x>960</x>
+        <y>110</y>
+        <width>231</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:white;
+border-radius: 5px;
+</string>
+      </property>
+      <widget class="Line" name="line_3">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>231</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #94B3FD;
+border-radius: 0px;</string>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="min_1_btn_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>69</y>
+         <width>211</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #FFD966;
+font: 11pt &quot;Bahnschrift&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Let's go</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="min_1_label_2">
+       <property name="geometry">
+        <rect>
+         <x>17</x>
+         <y>23</y>
+         <width>201</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 18pt &quot;OCR A Extended&quot;;
+color: black;</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Technology&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
      </widget>
