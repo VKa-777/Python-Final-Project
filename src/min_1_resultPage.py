@@ -19,7 +19,7 @@ def read_all_text_files(directory):
     return text_contents
 
 # Use a raw string to avoid issues with backslashes
-directory = '/Users/mac/PythonFinalProject/Python-Final-Project/assests/topic_text'
+directory = r'C:\Users\Trang Do\Documents\GitHub\python\Python-Final-Project\assests\topic_text'
 all_texts = read_all_text_files(directory)
 
 

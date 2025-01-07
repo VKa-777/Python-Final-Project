@@ -35,7 +35,9 @@ all_texts = read_all_text_files(directory)
 print(all_texts)
 
 class Ui_MainWindow(object):
-    
+    def __init__(self):
+        self.total_error = 0
+        
     def back_to_main_menu(self, current_window):
         self.timer.stop()
         self.window = QtWidgets.QMainWindow()
@@ -159,7 +161,7 @@ class Ui_MainWindow(object):
 
 
         # Timer setup
-        self.time_left = 10  # 1 minute in seconds
+        self.time_left = 60  # 1 minute in seconds
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update_timer)
         self.timer.start(1000)  # Update every second
@@ -197,7 +199,20 @@ class Ui_MainWindow(object):
             print("Using default text for expected_text.")  # Debugging line
 
         user_text = self.typing_area.toPlainText()
-        
+    # Tính toán số lỗi (errors) và số ký tự đúng (correct_chars)
+        total_errors = 0
+        correct_chars = 0
+
+        for i, char in enumerate(user_text):
+            if i < len(expected_text):
+                if char == expected_text[i]:
+                    correct_chars += 1
+                else:
+                    total_errors += 1
+            else:
+            # Nếu ký tự vượt quá văn bản gốc, coi là lỗi
+                total_errors += 1
+
         formatted_text = ""
         for i, char in enumerate(user_text):
             if i < len(expected_text) and char == expected_text[i]:
@@ -243,6 +258,16 @@ class Ui_MainWindow(object):
         # Pass the currently selected text to open_result_page
         self.open_result_page(wpm, level, self.selected_text)
 
+    def calculate_accuracy(self, user_text, reference_text):
+        total_chars = len(user_text)
+        correct_chars = sum(
+            1 for i, char in enumerate(user_text)
+            if i < len(reference_text) and char == reference_text[i]
+        )
+        # Use total errors in the accuracy calculation
+        accuracy = ((total_chars - self.total_error) / total_chars) * 100 if total_chars > 0 else 0
+        return max(accuracy, 0)  # Ensure accuracy doesn't go negative
+    
     def open_result_page(self, wpm, level, current_text):
         print(f"Opening result page with text: {current_text}")  # Debugging line
         self.window = QtWidgets.QMainWindow()
