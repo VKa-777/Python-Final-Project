@@ -2,7 +2,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 import min_1_typingTest
 import mainMenu
 import os
-
+import topicSelectMenu
 def read_all_text_files(directory):
     if not os.path.exists(directory):
         print(f"Directory {directory} does not exist.")
@@ -49,25 +49,6 @@ class Ui_MainWindow(object):
                                             "border-radius: 10px;")
         self.result_container.setObjectName("result_container")
         
-        # Define buttons that go in result_container
-        self.hard_text_btn = QtWidgets.QPushButton(parent=self.result_container)
-        self.hard_text_btn.setGeometry(QtCore.QRect(300, 329, 171, 41))
-        self.hard_text_btn.setStyleSheet("background-color: #FFD966;\n"
-                                         "border-radius: 5px;\n"
-                                         "color: black;\n"
-                                         "font: 63 16pt \"Bahnschrift SemiBold\";")
-        self.hard_text_btn.setObjectName("hard_text_btn")
-        self.hard_text_btn.clicked.connect(self.click_hard_text)
-        self.hard_text_btn.setText("Hard Mode")
-        self.very_hard_text_btn = QtWidgets.QPushButton(parent=self.result_container)
-        self.very_hard_text_btn.setGeometry(QtCore.QRect(789, 329, 171, 41))
-        self.very_hard_text_btn.setStyleSheet("background-color: #FFD966;\n"
-                                             "border-radius: 5px;\n"
-                                             "color: black;\n"
-                                             "font: 63 16pt \"Bahnschrift SemiBold\";")
-        self.very_hard_text_btn.setObjectName("very_hard_text_btn")
-        self.very_hard_text_btn.clicked.connect(self.click_very_hard_text)
-        self.very_hard_text_btn.setText("Extreme Mode")
         self.result_heading = QtWidgets.QLabel(parent=self.result_container)
         self.result_heading.setGeometry(QtCore.QRect(476, 14, 321, 46))
         self.result_heading.setStyleSheet("color: black;\n"
@@ -109,17 +90,38 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.main_menu_btn = QtWidgets.QPushButton(parent=self.result_container)
+        self.main_menu_btn.setGeometry(QtCore.QRect(789, 269, 171, 41))
+        self.main_menu_btn.setStyleSheet("background-color: #FFD966;\n"
+                                         "border-radius: 5px;\n"
+                                         "color: black;\n"
+                                         "font: 63 16pt \"Bahnschrift SemiBold\";")
+        self.main_menu_btn.setObjectName("main_menu_btn")
+        self.other_topic_btn = QtWidgets.QPushButton(parent=self.result_container)
+        self.other_topic_btn.setGeometry(QtCore.QRect(545, 269, 171, 41))
+        self.other_topic_btn.setStyleSheet("background-color: #FFD966;\n"
+                                         "border-radius: 5px;\n"
+                                         "color: black;\n"
+                                         "font: 63 16pt \"Bahnschrift SemiBold\";")
+        self.other_topic_btn.setObjectName("other_topic_btn")
+        self.other_topic_btn.setText("Other Topic")
 
+        self.try_again_btn.clicked.connect(self.on_try_again_clicked)
+        self.main_menu_btn.clicked.connect(lambda: self.go_to_main_menu(MainWindow))
+        self.other_topic_btn.clicked.connect(self.go_to_topic_select)
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
         # Connect buttons to functions
-        self.hard_text_btn.clicked.connect(self.click_hard_text)
-        self.very_hard_text_btn.clicked.connect(self.click_very_hard_text)
         self.try_again_btn.clicked.connect(self.on_try_again_clicked)
         self.main_menu_btn.clicked.connect(lambda: self.go_to_main_menu(MainWindow))
         
-
+    def go_to_topic_select(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = topicSelectMenu.Ui_MainWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        self.MainWindow.hide()
     def display_results(self, wpm, level, suggested_texts, current_text, total_chars, incorrect_chars_dict):
         self.suggested_texts = suggested_texts
         self.current_text = current_text
@@ -152,35 +154,6 @@ class Ui_MainWindow(object):
         self.try_again_btn.setText(_translate("MainWindow", "Try Again"))
         self.main_menu_btn.setText(_translate("MainWindow", "Main Menu"))
 
-    def click_hard_text(self):
-        if hasattr(self, 'suggested_texts') and len(self.suggested_texts) > 0:
-            selected_text = self.suggested_texts[0]
-            self.window = QtWidgets.QMainWindow()
-            self.ui = min_1_typingTest.Ui_MainWindow()
-            self.ui.setupUi(self.window)
-            self.ui.selected_text = selected_text
-            # ▼ Add this to override default Lorem:
-            self.ui.text_area.setPlainText(selected_text)
-            self.ui.text_area.setStyleSheet("font: 63 16pt \"Bahnschrift SemiBold\"; color: black")
-            print(self.ui.text_area.toPlainText())
-
-            self.window.show()
-            self.MainWindow.hide()
-        else:
-            QtWidgets.QMessageBox.warning(self.MainWindow, "Error", "No Hard Text available.")
-
-    def click_very_hard_text(self):
-        if hasattr(self, 'suggested_texts') and len(self.suggested_texts) > 1:
-            selected_text = self.suggested_texts[1]
-            self.window = QtWidgets.QMainWindow()
-            self.ui = min_1_typingTest.Ui_MainWindow()
-            self.ui.setupUi(self.window)
-            self.ui.selected_text = selected_text
-            self.ui.text_area.setPlainText(selected_text)
-            self.window.show()
-            self.MainWindow.hide()
-        else:
-            QtWidgets.QMessageBox.warning(self.MainWindow, "Error", "No Very Hard Text available.")
 
     def on_try_again_clicked(self):
         self.try_again(self.current_text)
@@ -214,9 +187,5 @@ if __name__ == "__main__":
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     # Provide two suggested texts for testing
-    ui.display_results(80, "Expert", [
-        all_texts.get('what-screams-i-have-depression.txt', 'Default Hard Text'),
-        all_texts.get('very_hard_text.txt', 'Default Very Hard Text')
-    ], current_text=all_texts.get('book.txt', 'Default Book Text'))
     MainWindow.show()
     sys.exit(app.exec())

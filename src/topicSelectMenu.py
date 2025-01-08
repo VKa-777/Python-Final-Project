@@ -7,10 +7,14 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
+import literatureLevel
+import scienceLevel  
+import technologyLevel
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
+        self.MainWindow = MainWindow
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1337, 720)
         MainWindow.setMaximumSize(QtCore.QSize(1337, 720))
@@ -127,7 +131,9 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
+        self.min_1_btn.clicked.connect(self.go_to_literature)
+        self.min_3_btn.clicked.connect(self.go_to_science)
+        self.min_1_btn_2.clicked.connect(self.go_to_technology)
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -146,7 +152,26 @@ class Ui_MainWindow(object):
         self.min_3_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Science</p></body></html>"))
         self.min_1_btn_2.setText(_translate("MainWindow", "Let\'s go"))
         self.min_1_label_2.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Technology</p></body></html>"))
+    def go_to_literature(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = literatureLevel.Ui_MainWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        self.MainWindow.hide()
 
+    def go_to_science(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = scienceLevel.Ui_MainWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        self.MainWindow.hide()
+
+    def go_to_technology(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = technologyLevel.Ui_MainWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        self.MainWindow.hide()
 
 if __name__ == "__main__":
     import sys
