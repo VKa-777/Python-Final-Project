@@ -33,6 +33,7 @@ def get_text_files_directory():
     return os.path.join(base_dir, r'assests/topic_text')
 
 directory = get_text_files_directory()
+print(directory)
 all_texts = read_all_text_files(directory)
 # print(all_texts)
 
@@ -191,7 +192,6 @@ class Ui_MainWindow(object):
         # Use selected_text if available, otherwise use the default text
         if self.selected_text:
             expected_text = self.selected_text
-            print("Using selected_text for expected_text.")  # Debugging line
         else:
             expected_text = (
                 "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. "
@@ -201,7 +201,6 @@ class Ui_MainWindow(object):
                 "pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. "
                 "Donec pede justo, fringilla vel, aliquet nec, vulputate eget,"
             )
-            print("Using default text for expected_text.")  # Debugging line
 
         user_text = self.typing_area.toPlainText()
         
@@ -311,6 +310,7 @@ class Ui_MainWindow(object):
         print(f"Suggested Text Selected: {new_text}")  # Debugging line
         self.selected_text = new_text
         self.expected_text = new_text
+        self.expected_text.setStyleSheet("font: 63 16pt \"Bahnschrift SemiBold\"; color: black")
         self.replay()
 
     def click_default_text(self):
@@ -320,20 +320,23 @@ class Ui_MainWindow(object):
 
 
     def replay(self):
-        # print(f"Replaying test with selected_text: {self.selected_text}")  # Debugging line
-        self.time_left = 60  # Reset the timer to 1 minute
+        # Reset the timer to 1 minute
+        self.time_left = 60
         self.label.setText("1:00")  # Reset the label
         self.typing_area.clear()  # Clear the text area
-        
+    
         if self.selected_text:
             self.text_area.setPlainText(self.selected_text)
-            self.text_area.setStyleSheet("font-size:48pt; font-weight:400; font-style:normal;")
+            self.text_area.setStyleSheet("font: 63 16pt \"Bahnschrift SemiBold\"; color: black")
             print(f"Set text area to selected_text: {self.selected_text}")  # Debugging line
         else:
             # Default text
             default_text = all_texts.get('book.txt', '')
             self.text_area.setPlainText(default_text)
+            self.text_area.setStyleSheet("font: 63 16pt \"Bahnschrift SemiBold\"; color: black")
             print(f"Set text area to default text: {default_text}")  # Debugging line
+    
+        self.text_area.repaint()  # Ensure the text area is updated
         self.timer.start(1000)  # Restart the timer
         
 if __name__ == "__main__":
