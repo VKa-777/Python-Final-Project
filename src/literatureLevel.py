@@ -7,10 +7,35 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
+import os
+import min_1_typingTest
+def read_all_text_files(directory):
+    if not os.path.exists(directory):
+        print(f"Directory {directory} does not exist.")
+        return {}
 
+    text_files = [f for f in os.listdir(directory) if f.endswith('.txt')]
+    text_contents = {}
+
+    for file_name in text_files:
+        file_path = os.path.join(directory, file_name)
+        with open(file_path, 'r', encoding='utf-8') as file:
+            text_contents[file_name] = file.read()
+
+    return text_contents
+
+def get_text_files_directory():
+    # Get the directory path of the script
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    # Join with the relative path to the 'assets/topic_text' directory
+    return os.path.join(base_dir, r'assests/topic_text')
+
+directory = get_text_files_directory()
+all_texts = read_all_text_files(directory)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
+        self.MainWindow = MainWindow 
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1337, 720)
         MainWindow.setMaximumSize(QtCore.QSize(1337, 720))
@@ -140,6 +165,39 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+    def go_to_beginner(self):
+        self.window = QtWidgets.QMainWindow()
+        selected_text = all_texts.get('beginnerLit.txt', '')
+        self.ui = min_1_typingTest.Ui_MainWindow()
+        self.ui.setupUi(self.window)
+        # Use selected_text so check_typing won't fall back to the default
+        self.ui.selected_text = selected_text
+        self.ui.text_area.setText(selected_text)
+        self.ui.text_area.setStyleSheet("font: 63 16pt \"Bahnschrift SemiBold\"; color: black")
+        self.window.show()
+        self.MainWindow.close()
+    def go_to_medium(self):
+        self.window = QtWidgets.QMainWindow()
+        selected_text = all_texts.get('mediumLit.txt', '')
+        self.ui = min_1_typingTest.Ui_MainWindow()
+        self.ui.setupUi(self.window)
+        # Use selected_text so check_typing won't fall back to the default
+        self.ui.selected_text = selected_text
+        self.ui.text_area.setText(selected_text)
+        self.ui.text_area.setStyleSheet("font: 63 16pt \"Bahnschrift SemiBold\"; color: black")
+        self.window.show()
+        self.MainWindow.close()
+    def go_to_advanced(self):
+        self.window = QtWidgets.QMainWindow()
+        selected_text = all_texts.get('advancedLit.txt', '')
+        self.ui = min_1_typingTest.Ui_MainWindow()
+        self.ui.setupUi(self.window)
+        # Use selected_text so check_typing won't fall back to the default
+        self.ui.selected_text = selected_text
+        self.ui.text_area.setText(selected_text)
+        self.ui.text_area.setStyleSheet("font: 63 16pt \"Bahnschrift SemiBold\"; color: black")
+        self.window.show()
+        self.MainWindow.close()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -157,6 +215,9 @@ class Ui_MainWindow(object):
         self.min_3_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Medium</p></body></html>"))
         self.min_1_btn_2.setText(_translate("MainWindow", "Let\'s go"))
         self.min_1_label_2.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Advanced</p></body></html>"))
+        self.min_1_btn.clicked.connect(self.go_to_beginner)
+        self.min_3_btn.clicked.connect(self.go_to_medium)
+        self.min_1_btn_2.clicked.connect(self.go_to_advanced)
 
 
 if __name__ == "__main__":

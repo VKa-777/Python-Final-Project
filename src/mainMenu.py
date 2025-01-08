@@ -8,11 +8,11 @@
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 import min_1_typingTest, min_3_typingTest, min_5_typingTest, page_1_typingTest, page_2_typingTest, page_3_typingTest
-
+import topicSelectMenu
 class Ui_MainWindow(object):
     def load_content(self, sender, current_window):
         test_map = {
-            "min_1_btn": "min_1_typingTest.Ui_MainWindow",
+            "min_1_btn": "topicSelectMenu.Ui_MainWindow",
             "min_3_btn": "min_3_typingTest.Ui_MainWindow",
             "min_5_btn": "min_5_typingTest.Ui_MainWindow",
             "page_1_btn": "page_1_typingTest.Ui_MainWindow",

@@ -167,6 +167,7 @@ class Ui_MainWindow(object):
             # Reuse the same text for the next typing session
             self.ui.selected_text = current_text
             self.ui.text_area.setPlainText(current_text)
+            self.ui.text_area.setStyleSheet("font: 63 16pt \"Bahnschrift SemiBold\"; color: black")
         else:
             self.ui.selected_text = None
             self.ui.text_area.setPlainText(all_texts.get('book.txt', ''))
