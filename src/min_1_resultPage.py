@@ -134,21 +134,33 @@ class Ui_MainWindow(object):
         # Add a label for incorrect character stats
         self.incorrect_chars_label = QtWidgets.QLabel(parent=self.result_container)
         self.incorrect_chars_label.setGeometry(QtCore.QRect(250, 210, 800, 61))
+        self.incorrect_chars_label.setStyleSheet("""
+            QLabel {
+                font: 25 14pt "Bahnschrift";
+                background: none;
+                color: black;
+                padding: 10px;
+            }
+        """)
         self.incorrect_chars_label.setObjectName("incorrect_chars_label")
-
+    
         stats_str = ", ".join([f"'{char}': {count}" for char, count in incorrect_chars_dict.items()])
         self.incorrect_chars_label.setText(
-            f"<html><head/><body><p align=\"center\">"
-            f"You entered {total_chars} characters.<br>"
-            f"Incorrect characters: {stats_str}"
-            f"</p></body></html>"
+            f"""<html><head/><body>
+                <p align="center" style="margin-right: 70px; margin-bottom: 90px;">
+                    <span style="font-size:14pt; font-weight:400;">You entered </span>
+                    <span style="font-size:14pt; font-weight:600; color:#23d83e;">{total_chars} characters.</span><br>
+                    <span style="font-size:14pt; font-weight:400;">Incorrect characters: </span>
+                    <span style="font-size:14pt; font-weight:600; color:#ea0c0f;">{stats_str}</span>
+                </p>
+            </body></html>"""
         )
 
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Result"))
-        self.heading_label.setText(_translate("MainWindow", "Result"))
+        self.heading_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\" style=\"font-size:24pt;\">Result</p></body></html>"))
         self.result_heading.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Typing Test Complete!</p></body></html>"))
         self.test_complete_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-weight:400;\">You typed the </span><span style=\" font-weight:600;\">1 Minute Typing Test</span></p></body></html>"))
         self.try_again_btn.setText(_translate("MainWindow", "Try Again"))
