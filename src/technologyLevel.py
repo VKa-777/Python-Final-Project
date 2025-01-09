@@ -9,6 +9,7 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 import os
 import min_1_typingTest
+import topicSelectMenu
 
 def read_all_text_files(directory):
     if not os.path.exists(directory):
@@ -35,6 +36,15 @@ directory = get_text_files_directory()
 all_texts = read_all_text_files(directory)
 
 class Ui_MainWindow(object):
+        
+    def go_to_topic_select(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = topicSelectMenu.Ui_MainWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        self.MainWindow.hide()
+                
+                
     def setupUi(self, MainWindow):
         self.MainWindow = MainWindow
         MainWindow.setObjectName("MainWindow")
@@ -203,9 +213,10 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Minute Typing Test"))
         self.return_btn.setText(_translate("MainWindow", "←"))
+        self.return_btn.clicked.connect(self.go_to_topic_select)
         self.heading_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-family:\'Bahnschrift\'; font-size:28pt; font-weight:600; color:#ffffff;\">Technology level</span></p></body></html>"))
         self.textBrowser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"p, li { white-space: pre-wrap; }\n"
+
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.875pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt;\">Please choose your desired level</span></p></body></html>"))
         self.min_1_btn.setText(_translate("MainWindow", "Let\'s go"))
