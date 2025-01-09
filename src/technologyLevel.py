@@ -9,6 +9,7 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 import os
 import min_1_typingTest
+import topicSelectMenu
 
 def read_all_text_files(directory):
     if not os.path.exists(directory):
@@ -35,6 +36,15 @@ directory = get_text_files_directory()
 all_texts = read_all_text_files(directory)
 
 class Ui_MainWindow(object):
+        
+    def go_to_topic_select(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = topicSelectMenu.Ui_MainWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        self.MainWindow.hide()
+                
+                
     def setupUi(self, MainWindow):
         self.MainWindow = MainWindow
         MainWindow.setObjectName("MainWindow")
@@ -203,6 +213,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Minute Typing Test"))
         self.return_btn.setText(_translate("MainWindow", "←"))
+        self.return_btn.clicked.connect(self.go_to_topic_select)
         self.heading_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-family:\'Bahnschrift\'; font-size:28pt; font-weight:600; color:#ffffff;\">Technology level</span></p></body></html>"))
         self.textBrowser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 
